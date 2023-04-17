@@ -51,4 +51,6 @@
     </ItemGroup>
   </Target>
 
+  <ProjectExtensions><VisualStudio><UserProperties clientapp_4package_1json__JsonSchema="https://fasterci.com/config.schema.json" /></VisualStudio></ProjectExtensions>
+
 </Project>
