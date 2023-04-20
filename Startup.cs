@@ -31,6 +31,16 @@ namespace HealthCheck
             {
                 configuration.RootPath = string.Format("{0}/dist", ClientApp);
             });
+            services.AddHealthChecks()
+                .AddCheck("ICMP_01",
+                    new ICMPHealthCheck("www.ryadel.com",
+                    100))
+                .AddCheck("ICMP_02",
+                    new ICMPHealthCheck("www.google.com",
+                    100))
+                .AddCheck("ICMP_03",
+                    new ICMPHealthCheck("www.doeiiiiiiiiis-not-exist.com",
+                    100));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +75,7 @@ namespace HealthCheck
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHealthChecks("/hc", new CustomHealthCheckOptions());
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
