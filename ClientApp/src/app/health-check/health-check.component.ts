@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { privateDecrypt } from 'crypto';
 
 @Component({
   selector: 'app-health-check',
@@ -18,7 +17,7 @@ export class HealthCheckComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<Result>(this.baseUrl + 'hc').subscribe(result => {
       this.result = result;
-    }, error => console.error(error));
+    }, error => console.error(error)); 
   }
 }
 
