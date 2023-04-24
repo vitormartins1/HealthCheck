@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace WorldCities.Data.Models
 {
+    [Table("Countries")]
     public class Country
     {
         public Country()
