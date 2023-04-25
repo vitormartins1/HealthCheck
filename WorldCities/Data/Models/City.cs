@@ -23,8 +23,10 @@ namespace WorldCities.Data.Models
 
         public string Name_ASCII { get; set; }
 
+        [Column(TypeName = "decimal(7,4)")]
         public decimal Lat { get; set; }
 
+        [Column(TypeName = "decimal(7,4)")]
         public decimal Lon { get; set; }
 
         [ForeignKey(nameof(Country))]

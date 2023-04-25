@@ -9,7 +9,7 @@ using WorldCities.Data;
 namespace WorldCities.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230425012411_Initial")]
+    [Migration("20230425012754_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,10 +31,10 @@ namespace WorldCities.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Lat")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(7,4)");
 
                     b.Property<decimal>("Lon")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(7,4)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

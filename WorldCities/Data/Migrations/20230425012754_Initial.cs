@@ -29,8 +29,8 @@ namespace WorldCities.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name_ASCII = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Lat = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Lon = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Lat = table.Column<decimal>(type: "decimal(7,4)", nullable: false),
+                    Lon = table.Column<decimal>(type: "decimal(7,4)", nullable: false),
                     CountryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
