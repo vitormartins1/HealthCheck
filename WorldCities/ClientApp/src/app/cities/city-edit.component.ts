@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { City } from './City';
+import { Country } from './../countries/Country';
 
 @Component({
   selector: 'app-city-edit',
@@ -14,6 +15,8 @@ export class CityEditComponent implements OnInit {
   title: string;
   form: FormGroup;
   city: City;
+  id?: number;
+  countries: Country[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,37 +29,74 @@ export class CityEditComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl(''),
       lat: new FormControl(''),
-      lon: new FormControl('')
+      lon: new FormControl(''),
+      countryId: new FormControl('')
     });
 
     this.loadData();
   }
 
   loadData() {
-    var id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.loadCountries();
 
-    var url = this.baseUrl + "api/Cities/" + id;
-    this.http.get<City>(url).subscribe(result => {
-      this.city = result;
-      this.title = "Edit - " + this.city.name;
+    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
+    if (this.id) {
+      var url = this.baseUrl + "api/Cities/" + this.id;
+      this.http
+        .get<City>(url)
+        .subscribe(result => {
+          this.city = result;
+          this.title = "Edit - " + this.city.name;
+          this.form.patchValue(this.city);
+        }, error => console.error(error));
+    }
+    else {
+      this.title = "Create a new City";
+    }
+  }
 
-      this.form.patchValue(this.city);
-    }, error => console.error(error));
+  loadCountries() {
+    var url = this.baseUrl + "api/Countries";
+    var params = new HttpParams()
+      .set("pageIndex", "0")
+      .set("pageSize", "9999")
+      .set("sortColumn", "name");
+
+    this.http
+      .get<any>(url, { params })
+      .subscribe(result => {
+        this.countries = result.data;
+      }, error => console.error(error));
   }
 
   onSubmit() {
-    var city = this.city;
+    var city =
+      (this.id)
+        ? this.city
+        : <City>{};
 
     city.name = this.form.get("name").value;
     city.lat = +this.form.get("lat").value;
     city.lon = +this.form.get("lon").value;
+    city.countryId = +this.form.get("countryId").value;
 
-    var url = this.baseUrl + "api/Cities/" + this.city.id;
-    this.http
-      .put<City>(url, city)
-      .subscribe(result => {
-        console.log("City " + city.id + " has beeen updated.");
-        this.router.navigate(['/cities']);
-      }, error => console.error(error));
+    if (this.id) {
+      var url = this.baseUrl + "api/Cities/" + this.city.id;
+      this.http
+        .put<City>(url, city)
+        .subscribe(result => {
+          console.log("City " + city.id + " has beeen updated.");
+          this.router.navigate(['/cities']);
+        }, error => console.error(error));
+    }
+    else {
+      var url = this.baseUrl + "api/Cities";
+      this.http
+        .post<City>(url, city)
+        .subscribe(result => {
+          console.log("City " + result.id + " has been created.");
+          this.router.navigate(['/cities']);
+        }, error => console.error(error));
+    }
   }
 }
