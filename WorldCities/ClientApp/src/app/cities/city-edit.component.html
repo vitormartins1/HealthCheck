@@ -5,6 +5,12 @@
 
   <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group">
+      <div *ngIf="form.invalid && form.errors && form.errors?.isDupeCity"
+           class="alert alert-danger">
+        <strong>ERROR</strong>:
+        A city with the same <i>name</i>, <i>lat</i>, <i>lon</i> and <i>country</i> already exists.
+      </div>
+
       <label for="name">City name:</label>
       <br />
       <input type="text" id="name"
