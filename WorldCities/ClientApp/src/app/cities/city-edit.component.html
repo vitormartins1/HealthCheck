@@ -4,22 +4,23 @@
   <p *ngIf="this.id && !city"><em>Loading...</em></p>
 
   <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <div *ngIf="form.invalid && form.errors && form.errors?.isDupeCity"
-           class="alert alert-danger">
-        <strong>ERROR</strong>:
-        A city with the same <i>name</i>, <i>lat</i>, <i>lon</i> and <i>country</i> already exists.
-      </div>
 
+    <div *ngIf="form.invalid && form.errors?.isDupeCity"
+         class="alert alert-danger">
+      <strong>ERROR</strong>:
+      A city with the same <i>name</i>, <i>lat</i>,
+      <i>lon</i> and <i>country</i> already exists.
+    </div>
+
+    <div class="form-group">
       <label for="name">City name:</label>
       <br />
       <input type="text" id="name"
              formControlName="name" required
              placeholder="City name..."
-             class="form-control"/>
+             class="form-control" />
 
-      <div *ngIf="form.get('name').invalid &&
-           (form.get('name').dirty || form.get('name').touched)"
+      <div *ngIf="hasError('name')"
            class="invalid-feedback">
         <div *ngIf="form.get('name').errors?.required">
           Name is required.
@@ -35,28 +36,33 @@
              placeholder="Latitude..."
              class="form-control" />
 
-      <div *ngIf="form.get('lat').invalid &&
-           (form.get('lat').dirty || form.get('lat').touched)"
+      <div *ngIf="hasError('lat')"
            class="invalid-feedback">
         <div *ngIf="form.get('lat').errors?.required">
           Latitude is required.
         </div>
+        <div *ngIf="form.get('lat').errors?.pattern">
+          Latitude requires a positive or negative number with 0-4 decimal values.
+        </div>
       </div>
     </div>
+
 
     <div class="form-group">
       <label for="lon">City longitude:</label>
       <br />
       <input type="text" id="lon"
              formControlName="lon" required
-             placeholder="Longitude..."
+             placeholder="Latitude..."
              class="form-control" />
 
-      <div *ngIf="form.get('lon').invalid &&
-           (form.get('lon').dirty || form.get('lon').touched)"
+      <div *ngIf="hasError('lon')"
            class="invalid-feedback">
         <div *ngIf="form.get('lon').errors?.required">
           Longitude is required.
+        </div>
+        <div *ngIf="form.get('lon').errors?.pattern">
+          Longitude requires a positive or negative number with 0-4 decimal values.
         </div>
       </div>
     </div>
@@ -66,18 +72,14 @@
       <br />
       <mat-form-field *ngIf="countries">
         <mat-label>Select a Country...</mat-label>
-        <mat-select id="countryId"
-                    formControlName="countryId">
-          <mat-option *ngFor="let country of countries"
-                      [value]="country.id">
+        <mat-select id="countryId" formControlName="countryId">
+          <mat-option *ngFor="let country of countries" [value]="country.id">
             {{country.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-
-      <div *ngIf="form.get('countryId').invalid &&
-           (form.get('countryId').dirty || form.get('countryId').touched)"
+      <div *ngIf="hasError('countryId')"
            class="invalid-feedback">
         <div *ngIf="form.get('countryId').errors?.required">
           Please select a Country.
@@ -86,18 +88,16 @@
     </div>
 
     <div class="form-group commands">
-      <button *ngIf="id"
-              type="submit"
+      <button *ngIf="id" type="submit"
               (click)="onSubmit()"
               [disabled]="form.invalid"
-              class="btn btn-sucess">
+              class="btn btn-success">
         Save
       </button>
-      <button *ngIf="!id"
-              type="submit"
+      <button *ngIf="!id" type="submit"
               (click)="onSubmit()"
               [disabled]="form.invalid"
-              class="btn btn-sucess">
+              class="btn btn-success">
         Create
       </button>
       <button type="button"

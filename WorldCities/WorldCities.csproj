@@ -34,12 +34,14 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\angular-material.module.ts" />
+    <None Remove="ClientApp\src\app\base.form.component.ts" />
     <None Remove="ClientApp\src\app\cities\city.ts" />
     <None Remove="ClientApp\src\app\countries\country.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\angular-material.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\base.form.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\cities\city.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\countries\country.ts" />
   </ItemGroup>
