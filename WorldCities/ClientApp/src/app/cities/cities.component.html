@@ -13,7 +13,8 @@
 </div>
 
 <mat-form-field [hidden]="!cities">
-  <input matInput (keyup)="loadData($event.target.value)"
+  <input matInput
+         (keyup)="onFilterTextChanged($event.target.value)"
          placeholder="Filter by name (or part of it)..." />
 </mat-form-field>
 
