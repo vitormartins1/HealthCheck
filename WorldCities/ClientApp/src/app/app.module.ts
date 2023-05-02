@@ -12,6 +12,9 @@ import { CitiesComponent } from './cities/cities.component';
 import { CityEditComponent } from './cities/city-edit.component';
 import { CountriesComponent } from './countries/countries.component';
 import { CountryEditComponent } from './countries/country-edit.component';
+import { CityService } from './cities/city.service';
+import { CountryService } from './countries/country.service';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';

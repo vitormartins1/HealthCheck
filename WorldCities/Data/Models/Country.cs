@@ -27,7 +27,7 @@ namespace WorldCities.Data.Models
 
         [JsonPropertyName("iso3")]
         public string ISO3 { get; set; }
-
+        [JsonIgnore]
         public virtual List<City> Cities { get; set; }
     }
 }
