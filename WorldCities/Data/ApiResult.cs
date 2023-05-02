@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Linq.Dynamic.Core;
-
+using Microsoft.Data.SqlClient;
 
 namespace WorldCities.Data
 {
@@ -106,6 +106,9 @@ namespace WorldCities.Data
                 .Skip(pageIndex * pageSize)
                 .Take(pageSize);
 
+#if DEBUG
+            (string, IEnumerable<SqlParameter>) sql = source.ToParametrizedSql();
+#endif
             List<T> data = await source.ToListAsync();
 
             return new ApiResult<T>(
