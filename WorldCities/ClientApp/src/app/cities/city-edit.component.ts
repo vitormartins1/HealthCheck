@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormGroup,
@@ -16,18 +16,22 @@ import { CityService } from './city.service';
 import { ApiResult } from '../base.service';
 
 import { BaseFormComponent } from '../base.form.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-city-edit',
   templateUrl: './city-edit.component.html',
   styleUrls: ['./city-edit.component.css']
 })
-export class CityEditComponent extends BaseFormComponent implements OnInit {
+export class CityEditComponent extends BaseFormComponent implements OnInit, OnDestroy {
   title: string;
   form: FormGroup;
   city: City;
   id?: number;
   countries: Country[];
+  activityLog: string = '';
+  private destroySubject: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -50,7 +54,41 @@ export class CityEditComponent extends BaseFormComponent implements OnInit {
       countryId: new FormControl('', Validators.required)
     }, null, this.isDupeCity());
 
+    this.form.valueChanges
+      .pipe(takeUntil(this.destroySubject))
+      .subscribe(() => {
+        if (!this.form.dirty) {
+          this.log("Form Model has been loaded.");
+        }
+        else {
+          this.log("Form was updated by the user.");
+        }
+      })
+
+    // react to changes in the form.name control
+    this.form.get("name")!.valueChanges
+      .pipe(takeUntil(this.destroySubject))
+      .subscribe(val => {
+        if (!this.form.dirty) {
+          this.log("Name has been loaded with initial values.");
+        }
+        else {
+          this.log("Name was updated by the user.");
+        }
+      });
+
     this.loadData();
+  }
+
+  ngOnDestroy() {
+    // emit a value with the takeUntil notifier
+    this.destroySubject.next(true);
+    // unsubscribe from the notifier itself
+    this.destroySubject.unsubscribe();
+  }
+
+  log(str: string) {
+    this.activityLog += "[" + new Date().toLocaleString() + "] " + str + "<br />";
   }
 
   loadData() {
