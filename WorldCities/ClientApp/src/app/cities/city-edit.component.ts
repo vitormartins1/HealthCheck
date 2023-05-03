@@ -29,7 +29,7 @@ export class CityEditComponent extends BaseFormComponent implements OnInit, OnDe
   form: FormGroup;
   city: City;
   id?: number;
-  countries: Country[];
+  countries: Observable<ApiResult<Country>>;
   activityLog: string = '';
   private destroySubject: Subject<boolean> = new Subject<boolean>();
 
@@ -88,7 +88,7 @@ export class CityEditComponent extends BaseFormComponent implements OnInit, OnDe
   }
 
   log(str: string) {
-    this.activityLog += "[" + new Date().toLocaleString() + "] " + str + "<br />";
+    console.log("[" + new Date().toLocaleString() + "] ");
   }
 
   loadData() {
@@ -110,17 +110,15 @@ export class CityEditComponent extends BaseFormComponent implements OnInit, OnDe
   }
 
   loadCountries() {
-    this.cityService
+    this.countries = this.cityService
       .getCountries<ApiResult<Country>>(
         0,
         9999,
         "name",
         null,
         null,
-        null)
-      .subscribe(result => {
-        this.countries = result.data;
-      }, error => console.error(error));
+        null
+      );
   }
 
   onSubmit() {
