@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33529.622
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldCities", "WorldCities.csproj", "{2E8332B1-3C82-4D3F-9399-2DFB6D754755}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldCities", "WorldCities\WorldCities.csproj", "{0EB9B7F8-D8EB-43F4-B288-033D2E045799}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldCities.Tests", "WorldCities.Tests\WorldCities.Tests.csproj", "{99705017-A223-448B-87F1-E595147CE413}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2E8332B1-3C82-4D3F-9399-2DFB6D754755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E8332B1-3C82-4D3F-9399-2DFB6D754755}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E8332B1-3C82-4D3F-9399-2DFB6D754755}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E8332B1-3C82-4D3F-9399-2DFB6D754755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EB9B7F8-D8EB-43F4-B288-033D2E045799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB9B7F8-D8EB-43F4-B288-033D2E045799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB9B7F8-D8EB-43F4-B288-033D2E045799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EB9B7F8-D8EB-43F4-B288-033D2E045799}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99705017-A223-448B-87F1-E595147CE413}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99705017-A223-448B-87F1-E595147CE413}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99705017-A223-448B-87F1-E595147CE413}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99705017-A223-448B-87F1-E595147CE413}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
