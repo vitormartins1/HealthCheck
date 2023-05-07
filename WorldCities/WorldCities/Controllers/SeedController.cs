@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
@@ -20,13 +21,19 @@ namespace WorldCities.Controllers
     public class SeedController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment _env;
 
         public SeedController(
-            ApplicationDbContext context, 
+            ApplicationDbContext context,
+            RoleManager<IdentityRole> roleManager,
+            UserManager<ApplicationUser> userManager,
             IWebHostEnvironment env)
         {
             _context = context;
+            _roleManager = roleManager;
+            _userManager = userManager;
             _env = env;
         }
 
@@ -144,5 +151,8 @@ namespace WorldCities.Controllers
                 Countries = numberOfCountriesAdded
             });
         }
+
+        [HttpGet]
+        public async Task<ActionResult> CreateDefaultUsers() => throw new NotImplementedException();
     }
 }
