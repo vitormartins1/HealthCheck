@@ -153,6 +153,76 @@ namespace WorldCities.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> CreateDefaultUsers() => throw new NotImplementedException();
+        public async Task<ActionResult> CreateDefaultUsers()
+        {
+            string role_RegisteredUser = "RegisterdUser";
+            string role_Administrator = "Administrator";
+
+            if (await _roleManager.FindByNameAsync(role_RegisteredUser) == null)
+            {
+                await _roleManager.CreateAsync(new IdentityRole(role_RegisteredUser));
+            }
+
+            if (await _roleManager.FindByNameAsync(role_Administrator) == null)
+            {
+                await _roleManager.CreateAsync(new IdentityRole(role_Administrator));
+            }
+
+            List<ApplicationUser> addedUserList = new List<ApplicationUser>();
+
+            string email_Admin = "admin@email.com";
+            if (await _userManager.FindByNameAsync(email_Admin) == null)
+            {
+                ApplicationUser user_Amin = new()
+                {
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    UserName = email_Admin,
+                    Email = email_Admin
+                };
+
+                await _userManager.CreateAsync(user_Amin, "MySecr3t$");
+
+                await _userManager.AddToRoleAsync(user_Amin,
+                    role_RegisteredUser);
+                await _userManager.AddToRoleAsync(user_Amin,
+                    role_Administrator);
+
+                user_Amin.EmailConfirmed = true;
+                user_Amin.LockoutEnabled = false;
+
+                addedUserList.Add(user_Amin);
+            }
+
+            string email_User = "user@email.com";
+            if (await _userManager.FindByEmailAsync(email_User) == null)
+            {
+                ApplicationUser user_User = new()
+                {
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    UserName = email_User,
+                    Email = email_User
+                };
+
+                await _userManager.CreateAsync(user_User, "MySecr3t$");
+
+                await _userManager.AddToRoleAsync(user_User, role_RegisteredUser);
+
+                user_User.EmailConfirmed = true;
+                user_User.LockoutEnabled = false;
+
+                addedUserList.Add(user_User);
+            }
+
+            if (addedUserList.Count > 0)
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            return new JsonResult(new
+            {
+                Count = addedUserList.Count,
+                Users = addedUserList
+            });
+        }
     }
 }
