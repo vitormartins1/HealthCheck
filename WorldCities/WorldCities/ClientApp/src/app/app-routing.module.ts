@@ -6,18 +6,22 @@ import { CityEditComponent } from './cities/city-edit.component';
 import { CountriesComponent } from './countries/countries.component';
 import { CountryEditComponent } from './countries/country-edit.component';
 
+import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
+
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'cities', component: CitiesComponent },
-  { path: 'city/:id', component: CityEditComponent },
-  { path: 'city', component: CityEditComponent },
+  { path: 'city/:id', component: CityEditComponent, canActivate:[AuthorizeGuard] },
+  { path: 'city', component: CityEditComponent, canActivate: [AuthorizeGuard] },
   { path: 'countries', component: CountriesComponent },
-  { path: 'country/:id', component: CountryEditComponent },
-  { path: 'country', component: CountryEditComponent }
+  { path: 'country/:id', component: CountryEditComponent, canActivate: [AuthorizeGuard] },
+  { path: 'country', component: CountryEditComponent, canActivate: [AuthorizeGuard] }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    initialNavigation: 'enabled'
+  })],
   exports: [RouterModule]
 })
 
