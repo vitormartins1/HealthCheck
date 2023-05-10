@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -62,6 +63,7 @@ namespace WorldCities.Controllers
             return city;
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCity(int id, City city)
         {
@@ -91,6 +93,7 @@ namespace WorldCities.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<City>> PostCity(City city)
         {
@@ -100,6 +103,7 @@ namespace WorldCities.Controllers
             return CreatedAtAction("GetCity", new { id = city.Id }, city);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<City>> DeleteCity(int id)
         {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FkHQMdpIWNkJ4/yX3E29YA2JYPe2IL2zqL6ypFzFZLOJl/hGB2TyxQiVGZnCcVNraXbouRnsD+XZMSG3dOxChg==",
+  "dgSpecHash": "7UtRT49YT+wCtBrSrHdheDkcG+ulRNve9jJ7Vmsd8oFZZfT9V6HXzXfhFoNGmft/ZXmJkqmgTYgN9h93SbeS/g==",
   "success": true,
   "projectFilePath": "C:\\Projects\\dotnet-5-and-angular-11\\WorldCities\\WorldCities.Tests\\WorldCities.Tests.csproj",
   "expectedPackageFiles": [
