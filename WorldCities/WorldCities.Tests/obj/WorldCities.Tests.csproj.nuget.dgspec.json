@@ -170,6 +170,10 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.21.2, )"
+            },
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[6.1.0, )"

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7UtRT49YT+wCtBrSrHdheDkcG+ulRNve9jJ7Vmsd8oFZZfT9V6HXzXfhFoNGmft/ZXmJkqmgTYgN9h93SbeS/g==",
+  "dgSpecHash": "vzUWfS+Aw+/XToMirz9hoM0o44R7uwuo8AKjuU7xZ3m/+1rssPq1+TaN+bCGtXia6i+GJGx0YpRhdtIsQCLQIA==",
   "success": true,
   "projectFilePath": "C:\\Projects\\dotnet-5-and-angular-11\\WorldCities\\WorldCities.Tests\\WorldCities.Tests.csproj",
   "expectedPackageFiles": [
@@ -95,6 +95,7 @@
     "C:\\Users\\vitor\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
+    "C:\\Users\\vitor\\.nuget\\packages\\sendgrid\\9.21.2\\sendgrid.9.21.2.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\serilog\\2.12.0\\serilog.2.12.0.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\serilog.aspnetcore\\6.1.0\\serilog.aspnetcore.6.1.0.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\serilog.extensions.hosting\\5.0.1\\serilog.extensions.hosting.5.0.1.nupkg.sha512",
@@ -106,6 +107,7 @@
     "C:\\Users\\vitor\\.nuget\\packages\\serilog.sinks.file\\5.0.0\\serilog.sinks.file.5.0.0.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\serilog.sinks.mssqlserver\\6.3.0\\serilog.sinks.mssqlserver.6.3.0.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\serilog.sinks.periodicbatching\\3.1.0\\serilog.sinks.periodicbatching.3.1.0.nupkg.sha512",
+    "C:\\Users\\vitor\\.nuget\\packages\\starkbank-ecdsa\\1.2.0\\starkbank-ecdsa.1.2.0.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

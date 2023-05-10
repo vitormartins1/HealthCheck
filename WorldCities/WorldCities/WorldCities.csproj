@@ -25,6 +25,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="SendGrid" Version="9.21.2" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.3.0" />
